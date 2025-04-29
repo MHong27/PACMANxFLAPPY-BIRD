@@ -45,15 +45,15 @@ button {
 
 #start-btn {
     position: absolute;
-    z-index: 1;
     top: 20px;
     right: 20px;
     padding: 10px 20px;
     font-size: 16px;
     background-color: yellow;
-    color: red pink blue green;
+    color: red;
     border: none;
     border-radius: 8px;
+    top:0%;
     cursor: pointer;
 }
 
