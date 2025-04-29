@@ -59,6 +59,7 @@ button {
 
 #start-btn:hover {
     background-color: rgb(255, 123, 0);
-    width: 50%;
-    transition: all 1s ease-out;
+    color: yellow;
+    width: 7%;
+    transition: all 0s ease-out;
 }
