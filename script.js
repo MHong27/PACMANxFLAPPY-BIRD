@@ -28,3 +28,16 @@ function applyGravity() {
 
     bird.style.top = birdTop + "px";
 }
+
+
+// session 2
+document.addEventListener("keydown", (e) => {
+    if (e.code === "Space" || e.code === "ArrowUp") {
+        if (game_state !== "play") {
+            game_state = "play";
+            startGame();
+        }
+
+        bird_dy
+    }
+})
