@@ -19,7 +19,7 @@ function setScore(newScore) {
     scoreSound.play(); // play only when actually scoring
   }
   score = newScore;
-  score_display.textContent = "Score: " + score;
+  score_display.textContent = "Score: " + score + " | Best: " + highScore;
 }
 
 // session 2
@@ -73,6 +73,7 @@ function increaseScore() {
   score += 1;
   console.log("Score:", score);
 }
+let highScore = localStorage.getItem("flappyHighScore") || 0;
 
 increaseScore();
 
@@ -83,8 +84,11 @@ function startGame() {
 
   // session 4
   backgroundMusic.play();
-  
+
   gameInterval = setInterval(() => {
+
+
+    score_display.textContent = "Score: " + score + " | Best: " + highScore;
     // session 2
     applyGravity();
     // session 3
@@ -196,6 +200,11 @@ function checkCollision() {
 // session 3
 // End game
 function endGame() {
+  // session 4
+  console.log(score, highScore)
+  if (Number(score) > Number(highScore)) {
+    localStorage.setItem("flappyHighScore", score);
+  }
   clearInterval(gameInterval);
   gameInterval = null;
 
@@ -247,3 +256,5 @@ const backgroundMusic = new Audio("sounds/background.mp3");
 backgroundMusic.loop = true; // music should keep playing
 backgroundMusic.volume = 0.5; // adjust volume
 backgroundMusic.play();
+
+// session 4 - High Score Feature
