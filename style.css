@@ -80,3 +80,14 @@ button {
 .bottom-pipe {
     border-top: 5px solid cyan;
 }
+
+/* session 4 */
+
+#difficulty-select {
+    position: absolute;
+    top: 100px;
+    right: 20px;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+}

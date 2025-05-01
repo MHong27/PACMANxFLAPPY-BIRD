@@ -15,6 +15,9 @@ let pipe_gap = 300;
 
 // session 3
 function setScore(newScore) {
+  if (newScore > score) {
+    scoreSound.play(); // play only when actually scoring
+  }
   score = newScore;
   score_display.textContent = "Score: " + score;
 }
@@ -47,6 +50,9 @@ document.addEventListener("keydown", (e) => {
       startGame();
     }
 
+    // session 4
+    flapSound.play(); // Play flap sound
+
     bird_dy = -7;
   }
 });
@@ -75,6 +81,9 @@ let gameInterval = null;
 function startGame() {
   if (gameInterval !== null) return; // Prevent multiple intervals
 
+  // session 4
+  backgroundMusic.play();
+  
   gameInterval = setInterval(() => {
     // session 2
     applyGravity();
@@ -84,6 +93,9 @@ function startGame() {
     checkCollision();
     // session 3
     frame++;
+
+    // session 4
+    getDifficultySettings(); // update difficulty before starting
 
     // session 3
     // Every 200 frames (~2 seconds), create new pipe
@@ -205,3 +217,33 @@ function resetGame() {
   game_state = "Start";
   score_display.textContent = "";
 }
+
+// session 4
+let pipeSpeed = 3; // Default speed
+
+function getDifficultySettings() {
+  const selected = document.getElementById("difficulty-select").value;
+
+  if (selected === "easy") {
+    pipeSpeed = 2;
+  } else if (selected === "medium") {
+    pipeSpeed = 3;
+  } else if (selected === "hard") {
+    pipeSpeed = 5;
+  } else if ( selected === "extreme") {
+    pipeSpeed = 15;
+  } else if ( selected === "impossible") {
+    pipeSpeed = 30;
+  }
+}
+
+// Load sound effects
+const flapSound = new Audio("sounds/flap.mp3");
+const scoreSound = new Audio("sounds/score.mp3");
+const hitSound = new Audio("sounds/hit.mp3");
+
+// Load background music
+const backgroundMusic = new Audio("sounds/background.mp3");
+backgroundMusic.loop = true; // music should keep playing
+backgroundMusic.volume = 0.5; // adjust volume
+backgroundMusic.play();
